@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:oktoast/oktoast.dart';
-import 'src/app/theme/color_consts.dart';
-import 'src/app/theme/text_style_consts.dart';
+import 'src/app/theme/colors.dart';
+import 'src/app/theme/text_styles.dart';
 
 class AppWidget extends StatelessWidget {
 
-  final TextStylesConsts textStyles = TextStylesConsts();
+  final TextStyles textStyles = TextStyles();
   
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,9 @@ class AppWidget extends StatelessWidget {
         title: 'Pautas',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: ThemeConsts.primaryColor,
-          accentColor: ThemeConsts.accentColor,
-          backgroundColor: ThemeConsts.backgroundColor,
+          primaryColor: AppColors.primaryColor,
+          accentColor: AppColors.accentColor,
+          backgroundColor: AppColors.backgroundColor,
           fontFamily: 'Google',
           appBarTheme: AppBarTheme(
             textTheme: TextTheme(

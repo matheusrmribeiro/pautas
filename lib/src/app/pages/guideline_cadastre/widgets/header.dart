@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
 
 class Header extends StatelessWidget {
 
   Header({Key key, this.title = "", this.subtitle = ""}) : super(key: key);
 
-  final TextStylesConsts textStylesConsts = TextStylesConsts();
+  final TextStyles textStylesConsts = TextStyles();
   final String title;
   final String subtitle;
 

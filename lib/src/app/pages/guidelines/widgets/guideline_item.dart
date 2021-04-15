@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pautas/src/app/pages/guidelines/guidelines_controller.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
+import 'package:pautas/src/app/theme/colors.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
 import 'package:pautas/src/domain/entities/guideline_entity.dart';
 
 class GuidelineItem extends StatefulWidget {
@@ -16,7 +16,7 @@ class GuidelineItem extends StatefulWidget {
 }
 
 class _GuidelineItemState extends State<GuidelineItem> {
-  final TextStylesConsts textStyles = TextStylesConsts();
+  final TextStyles textStyles = TextStyles();
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +32,13 @@ class _GuidelineItemState extends State<GuidelineItem> {
             .then((value) => widget.controller.getData());
           },
           child: Card(
-            color: ThemeConsts.guidelineItemColor,
+            color: AppColors.guidelineItemColor,
             margin: EdgeInsets.zero,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: Container(
               margin: EdgeInsets.only(left: 10),
               decoration: BoxDecoration(
-                color: ThemeConsts.textFieldColor,
+                color: AppColors.textFieldColor,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(10),
                   bottomRight: Radius.circular(10)

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
-import 'package:pautas/src/app/theme/text_field_style_consts.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
+import 'package:pautas/src/app/theme/colors.dart';
+import 'package:pautas/src/app/theme/text_field_styles.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
 import 'package:pautas/src/app/widgets/pulse_animation.dart';
 
 import '../login_controller.dart';
@@ -20,7 +20,7 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends ModularState<LoginForm, LoginController>{
 
-  final TextStylesConsts stylesConsts = TextStylesConsts();
+  final TextStyles stylesConsts = TextStyles();
 
   double _formHeight = 0;
   TextEditingController emailController = TextEditingController();
@@ -79,7 +79,7 @@ class _LoginFormState extends ModularState<LoginForm, LoginController>{
                           child: Text(
                             "Entrar com sua conta",
                             style: TextStyle(
-                              color: ThemeConsts.backgroundColor,
+                              color: AppColors.backgroundColor,
                               fontSize: 18
                             ),
                           ),
@@ -126,7 +126,7 @@ class _LoginFormState extends ModularState<LoginForm, LoginController>{
                             child: ElevatedButton(
                               onPressed: controller.onLoginEmailPassword,
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(ThemeConsts.backgroundColor)
+                                backgroundColor: MaterialStateProperty.all(AppColors.backgroundColor)
                               ),
                               child: Text("Entrar",
                                 style: TextStyle(
@@ -149,7 +149,7 @@ class _LoginFormState extends ModularState<LoginForm, LoginController>{
                                 },
                                 child: Text(
                                   ' Registre-se!',
-                                  style: TextStylesConsts.textStyleBackground,
+                                  style: TextStyles.textStyleBackground,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -192,9 +192,9 @@ class _LoginFormState extends ModularState<LoginForm, LoginController>{
                   width: 40,
                   height: 40,
                   child: PulseAnimator(
-                    pulseColor: ThemeConsts.primaryColor[100],
+                    pulseColor: AppColors.primaryColor[100],
                     child: RaisedButton(
-                      color: ThemeConsts.backgroundColor,
+                      color: AppColors.backgroundColor,
                       elevation: 1,
                       padding: EdgeInsets.all(0),
                       shape: RoundedRectangleBorder(

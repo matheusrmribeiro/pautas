@@ -3,8 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pautas/src/app/controllers/root_controller.dart';
 import 'package:pautas/src/app/pages/guidelines/guidelines_page.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
+import 'package:pautas/src/app/theme/colors.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
 import 'package:pautas/src/app/widgets/navigator_buttons.dart';
 
 class RootPage extends StatefulWidget {
@@ -14,7 +14,7 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends ModularState<RootPage, RootController> {
   
-  final TextStylesConsts textStyles = TextStylesConsts();
+  final TextStyles textStyles = TextStyles();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _RootPageState extends ModularState<RootPage, RootController> {
             Text('Pautas',
               style: TextStyle(
                 fontSize: 24,
-                color: ThemeConsts.textFieldColor,
+                color: AppColors.textFieldColor,
                 fontWeight: FontWeight.bold
               )
             ),
@@ -85,7 +85,7 @@ class _RootPageState extends ModularState<RootPage, RootController> {
                 pageController: controller.pageController,
                 totalPages: 2,
                 canNavigate: false,
-                focusedStepColor: ThemeConsts.textFieldColor,
+                focusedStepColor: AppColors.textFieldColor,
                 unfocusedStepColor: Theme.of(context).accentColor,
               );
             }

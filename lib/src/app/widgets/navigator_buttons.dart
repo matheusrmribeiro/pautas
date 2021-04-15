@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
+import 'package:pautas/src/app/theme/colors.dart';
 
 class NavigatorButtons extends StatefulWidget {
   NavigatorButtons({
@@ -10,7 +10,7 @@ class NavigatorButtons extends StatefulWidget {
     @required this.totalPages, 
     this.nextCallback,
     this.unfocusedStepColor = Colors.white,
-    this.focusedStepColor = ThemeConsts.textFieldColor,
+    this.focusedStepColor = AppColors.textFieldColor,
   });
 
   final PageController pageController;
@@ -38,10 +38,10 @@ class _NavigatorButtonsState extends State<NavigatorButtons> {
   void initState() {
     super.initState();
     for (int i = 0; i < widget.totalPages; i++)
-      steps.add(Steps(index: i, color: ThemeConsts.textFieldColor));
+      steps.add(Steps(index: i, color: AppColors.textFieldColor));
   }
   
-  List<Steps> steps = List<Steps>();
+  List<Steps> steps = [];
   bool isLastPage = false;
   bool ignoreNext = false;
 
@@ -75,7 +75,7 @@ class _NavigatorButtonsState extends State<NavigatorButtons> {
                 child: IconButton(
                     icon: Icon(FeatherIcons.chevronLeft, 
                       size: 30, 
-                      color: ThemeConsts.textFieldColor),
+                      color: AppColors.textFieldColor),
                     onPressed: (){
                       FocusScope.of(context).unfocus();
                       if (!ignoreNext)

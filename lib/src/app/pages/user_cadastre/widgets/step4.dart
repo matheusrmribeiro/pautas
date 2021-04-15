@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
-import 'package:pautas/src/app/theme/text_field_style_consts.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
-import 'package:pautas/src/app/widgets/custom_scroll_behavior.dart';
+import 'package:pautas/src/app/theme/colors.dart';
+import 'package:pautas/src/app/theme/text_field_styles.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
 import 'package:pautas/src/app/widgets/toast.dart';
 import '../user_cadastre_controller.dart';
 import 'header.dart';
@@ -29,7 +28,7 @@ class Step4 extends StatelessWidget {
   final Function callback;
   final UserCadastreController controller;
   final TextEditingController _textController = TextEditingController();
-  final TextStylesConsts textStylesConsts = TextStylesConsts();
+  final TextStyles textStylesConsts = TextStyles();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,7 @@ class Step4 extends StatelessWidget {
               return Visibility(
                 visible: controller.finalized,
                 child: Container(
-                  color: ThemeConsts.backgroundColor,
+                  color: AppColors.backgroundColor,
                   width: double.infinity,
                   height: double.infinity,
                   child: Center(
@@ -69,7 +68,7 @@ class Step4 extends StatelessWidget {
                         children: <Widget>[
                           CircularProgressIndicator(
                             strokeWidth: 8,
-                            valueColor: AlwaysStoppedAnimation<Color>(ThemeConsts.textFieldColor),
+                            valueColor: AlwaysStoppedAnimation<Color>(AppColors.textFieldColor),
                           ),
                           Divider(color: Colors.transparent),
                           Text("Estamos criando a sua conta! Aguarde por favor...",
@@ -90,7 +89,7 @@ class Step4 extends StatelessWidget {
               return Visibility(
                 visible: controller.goToEmail,
                 child: Container(
-                  color: ThemeConsts.backgroundColor,
+                  color: AppColors.backgroundColor,
                   width: double.infinity,
                   height: double.infinity,
                   child: Center(
@@ -99,7 +98,7 @@ class Step4 extends StatelessWidget {
                       width: double.infinity,
                       child: Column(
                         children: <Widget>[
-                          Icon(Icons.warning, color: ThemeConsts.textFieldErrorColor, size: 100,),
+                          Icon(Icons.warning, color: AppColors.textFieldErrorColor, size: 100,),
                           Divider(color: Colors.transparent),
                           Text("Esse email já está em uso...",
                             style: textStylesConsts.h2,
@@ -108,7 +107,7 @@ class Step4 extends StatelessWidget {
                           ),
                           Divider(color: Colors.transparent),
                           RaisedButton(
-                            color: ThemeConsts.textFieldSuccessColor,
+                            color: AppColors.textFieldSuccessColor,
                             child: Text("Trocar email",
                               style: textStylesConsts.hint,
                               softWrap: true,
@@ -126,7 +125,7 @@ class Step4 extends StatelessWidget {
                 ),
               );
             }
-          )          
+          )
         ],
       ),
     );

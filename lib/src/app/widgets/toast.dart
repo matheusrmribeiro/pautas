@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
+import 'package:pautas/src/app/theme/colors.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
 import 'package:pautas/src/app/utils/enums.dart';
 
 class Toast{
@@ -11,7 +11,7 @@ class Toast{
       margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: (toastKind == ToastKind.error) ? ThemeConsts.textFieldErrorColor : ThemeConsts.textFieldSuccessColor,
+        color: (toastKind == ToastKind.error) ? AppColors.textFieldErrorColor : AppColors.textFieldSuccessColor,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Center(
@@ -19,7 +19,7 @@ class Toast{
           message??"",
           softWrap: true,
           textAlign: TextAlign.center,
-          style: TextStylesConsts().hint,
+          style: TextStyles().hint,
         ),
       ),
     );

@@ -44,4 +44,9 @@ abstract class _GuidelinesControllerBase with Store {
     _repository.update(guideline);
   }
 
+  @action
+  void deleteGuideline(GuidelineEntity guideline){
+    _repository.delete(guideline.id);
+  }
+
 }

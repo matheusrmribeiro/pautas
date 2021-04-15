@@ -2,22 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'color_consts.dart';
+import 'colors.dart';
 
-class TextStylesConsts {
+class TextStyles {
+
+  TextStyles({this.context});
+
+  final BuildContext context;
 
   static const textStyleBackground = TextStyle(
-    color: ThemeConsts.backgroundColor,
+    color: AppColors.backgroundColor,
   );
 
   final loginHint = GoogleFonts.montserrat(
     fontSize: 14, 
-    color: ThemeConsts.textFieldColor,
+    color: AppColors.textFieldColor,
     fontWeight: FontWeight.w500);
 
   final loginForgotPassword = GoogleFonts.montserrat(
     fontSize: 14, 
-    color: ThemeConsts.primaryColor,
+    color: AppColors.primaryColor,
     fontWeight: FontWeight.w500,
     decoration: TextDecoration.underline);    
 
@@ -28,17 +32,17 @@ class TextStylesConsts {
 
   final h1 = GoogleFonts.montserrat(
     fontSize: 25, 
-    color: ThemeConsts.textPrimaryColor,
+    color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.w500);
 
   final h1Primary = GoogleFonts.montserrat(
     fontSize: 25, 
-    color: ThemeConsts.primaryColor,
+    color: AppColors.primaryColor,
     fontWeight: FontWeight.w500);
 
   final h2 = GoogleFonts.montserrat(
     fontSize: 20, 
-    color: ThemeConsts.textPrimaryColor,
+    color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.w500);
 
   final h2White = GoogleFonts.montserrat(
@@ -48,20 +52,20 @@ class TextStylesConsts {
 
   final h2Primary = GoogleFonts.montserrat(
     fontSize: 20, 
-    color: ThemeConsts.primaryColor,
+    color: AppColors.primaryColor,
     fontWeight: FontWeight.w500);
 
   final textFieldWhite = GoogleFonts.montserrat(
     fontSize: 20, 
-    color: ThemeConsts.textPrimaryColor,
+    color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.normal);
 
   final popupCancelButtonColor = GoogleFonts.montserrat(
-    color: ThemeConsts.textPrimaryColor,
+    color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.w500);       
 
   final popupOkButtonColor = GoogleFonts.montserrat(
-    color: ThemeConsts.textPrimaryColor,
+    color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.w500); 
 
   final guidelineItemTitle = GoogleFonts.montserrat(
@@ -76,17 +80,28 @@ class TextStylesConsts {
 
   final headerInfo = GoogleFonts.roboto(
     fontSize: 12, 
-    color: ThemeConsts.hintColor,
+    color: AppColors.hintColor,
     fontWeight: FontWeight.bold,);
 
   final guidelineDetailTitle = GoogleFonts.montserrat(
     fontSize: 20, 
-    color: ThemeConsts.textFieldColor,
+    color: AppColors.textFieldColor,
     fontWeight: FontWeight.bold); 
   
   final guidelineDetailInfo = GoogleFonts.montserrat(
     fontSize: 18, 
-    color: ThemeConsts.textFieldColor,
+    color: AppColors.textFieldColor,
     fontWeight: FontWeight.normal);      
+
+  get customTextFieldLabel => GoogleFonts.roboto(
+    fontSize: 40, 
+    color: Theme.of(context).accentColor,
+    fontWeight: FontWeight.bold);
+
+  get customTextFieldText => GoogleFonts.roboto(
+    fontSize: 20, 
+    color: Theme.of(context).accentColor,
+    fontWeight: FontWeight.bold,
+  );
 
 }

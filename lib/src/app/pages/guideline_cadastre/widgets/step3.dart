@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pautas/src/app/theme/text_field_style_consts.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
-import 'package:pautas/src/app/widgets/custom_scroll_behavior.dart';
+import 'package:pautas/src/app/theme/text_field_styles.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
+import 'package:pautas/src/app/widgets/customTextFormField.dart';
 import 'package:pautas/src/app/widgets/toast.dart';
 import 'package:pautas/src/domain/entities/user_entity.dart';
 import '../guideline_cadastre_controller.dart';
@@ -32,7 +32,7 @@ class Step3 extends StatelessWidget {
 
   final GuidelineCadastreController controller;
   final TextEditingController _textController = TextEditingController();
-  final TextStylesConsts textStylesConsts = TextStylesConsts();
+  final TextStyles textStylesConsts = TextStyles();
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +45,18 @@ class Step3 extends StatelessWidget {
             alignment: Alignment.center,
             child: Container(
               margin: EdgeInsets.all(10),
-              child: TextFormField(
+              child: CustomTextFormField(
                 controller: _textController,
                 decoration: TextFieldStylesConsts.textFieldCadastre(hint: "", label: "DETALHES"),
                 maxLength: 300,
                 maxLines: 4,
-                minLines: 1,
+                minLines: 4,
                 style: textStylesConsts.textFieldWhite,
                 keyboardType: TextInputType.multiline,
                 textCapitalization: TextCapitalization.sentences,
+                onFieldSubmited: (String text) {
+                  Modular.to.pop();
+                },
               )
             ),
           ),

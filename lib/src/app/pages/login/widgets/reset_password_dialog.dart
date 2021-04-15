@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
-import 'package:pautas/src/app/theme/text_field_style_consts.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
+import 'package:pautas/src/app/theme/colors.dart';
+import 'package:pautas/src/app/theme/text_field_styles.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
 import 'package:pautas/src/app/utils/enums.dart';
 import 'package:pautas/src/app/widgets/custom_scroll_behavior.dart';
 import 'package:pautas/src/app/widgets/toast.dart';
@@ -12,7 +12,7 @@ import 'package:pautas/src/app/widgets/toast.dart';
 class ResetPasswordDialog extends StatelessWidget {
 
   final TextEditingController _controller = TextEditingController();
-  final TextStylesConsts _textStylesConsts = TextStylesConsts();
+  final TextStyles _textStylesConsts = TextStyles();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ResetPasswordDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Esqueci minha senha",
-              style: TextStylesConsts().h2,
+              style: TextStyles().h2,
             ),
             SizedBox(
               height: 30,
@@ -41,9 +41,9 @@ class ResetPasswordDialog extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width * 0.9,
               child: RaisedButton(
-                color: ThemeConsts.backgroundColor,
+                color: AppColors.backgroundColor,
                 child: Text("Enviar",
-                  style: TextStylesConsts().hint,
+                  style: TextStyles().hint,
                 ),
                 onPressed: (){
                   FirebaseAuth.instance.sendPasswordResetEmail(email: _controller.text);

@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pautas/src/app/controllers/root_controller.dart';
 import 'package:pautas/src/app/pages/guidelines/widgets/guideline_item.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
+import 'package:pautas/src/app/theme/colors.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
 import 'guidelines_controller.dart';
 
 class GuidelinesPage extends StatefulWidget {
@@ -22,7 +22,7 @@ class GuidelinesPage extends StatefulWidget {
 class _GuidelinesPageState extends State<GuidelinesPage> with AutomaticKeepAliveClientMixin<GuidelinesPage> {
   
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>(); 
-  final TextStylesConsts textStyles = TextStylesConsts();
+  final TextStyles textStyles = TextStyles();
   GuidelinesController controller;
   RootController rootController = Modular.get<RootController>();
 
@@ -34,7 +34,11 @@ class _GuidelinesPageState extends State<GuidelinesPage> with AutomaticKeepAlive
     super.initState();
     controller = GuidelinesController(done: widget.done);
     controller.getData();
-    reaction((_) => rootController.currentPage, (msg) => controller.getData());
+    reaction(
+      (_) => rootController.currentPage, 
+      (msg) => controller.getData(), 
+      name: (widget.done) ? "guidelineDone" : "guideline"
+    );
   }
 
   @override
@@ -57,7 +61,7 @@ class _GuidelinesPageState extends State<GuidelinesPage> with AutomaticKeepAlive
                   margin: EdgeInsets.only(left: 10, top: 4),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    border: Border.all(color: ThemeConsts.hintColor)
+                    border: Border.all(color: AppColors.hintColor)
                   ),
                   child: Center(
                     child: Text((controller.guidelines.length > 999)

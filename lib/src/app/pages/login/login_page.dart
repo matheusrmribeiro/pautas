@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
+import 'package:pautas/src/app/theme/colors.dart';
 import 'login_controller.dart';
 import 'widgets/details_widget.dart';
 import 'widgets/login_form.dart';
@@ -28,7 +28,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeConsts.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       resizeToAvoidBottomInset: false,
       body: Container(
         child: Stack(
@@ -62,7 +62,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           Text('Pautas',
                             style: TextStyle(
                               fontSize: 24,
-                              color: ThemeConsts.textFieldColor,
+                              color: AppColors.textFieldColor,
                               fontWeight: FontWeight.bold
                             )
                           ),

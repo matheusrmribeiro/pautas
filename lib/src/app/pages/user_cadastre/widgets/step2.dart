@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pautas/src/app/theme/text_field_style_consts.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
-import 'package:pautas/src/app/widgets/custom_scroll_behavior.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pautas/src/app/theme/text_field_styles.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
+import 'package:pautas/src/app/widgets/customTextFormField.dart';
 import 'package:pautas/src/app/widgets/toast.dart';
 import '../user_cadastre_controller.dart';
 import 'header.dart';
@@ -30,7 +31,7 @@ class Step2 extends StatelessWidget {
 
   final UserCadastreController controller;
   final TextEditingController _textController = TextEditingController();
-  final TextStylesConsts textStylesConsts = TextStylesConsts();
+  final TextStyles textStylesConsts = TextStyles();
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +48,16 @@ class Step2 extends StatelessWidget {
             alignment: Alignment.center,
             child: Container(
               margin: EdgeInsets.all(10),
-              child: TextFormField(
+              child: CustomTextFormField(
                 controller: _textController,
                 decoration: TextFieldStylesConsts.textFieldCadastre(hint: "Meu email é...", label: "EMAIL"),
                 maxLength: 60,
                 style: textStylesConsts.textFieldWhite,
                 keyboardType: TextInputType.emailAddress,
                 textCapitalization: TextCapitalization.none,
+                onFieldSubmited: (String text) {
+                  Modular.to.pop();
+                },
               ),
             ),
           ),

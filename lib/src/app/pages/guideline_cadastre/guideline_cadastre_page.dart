@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
+import 'package:pautas/src/app/theme/colors.dart';
 import 'package:pautas/src/app/widgets/custom_scroll_behavior.dart';
 import 'package:pautas/src/app/widgets/navigator_buttons.dart';
 import 'guideline_cadastre_controller.dart';
@@ -44,7 +44,7 @@ class _GuidelineCadastreState extends State<GuidelineCadastrePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeConsts.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
@@ -55,7 +55,7 @@ class _GuidelineCadastreState extends State<GuidelineCadastrePage> {
           },
         ),
         elevation: 0,
-        backgroundColor: ThemeConsts.backgroundColor,
+        backgroundColor: AppColors.backgroundColor,
       ),
       extendBody: true,
       body: CustomScrollConfiguration(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pautas/src/app/theme/text_style_consts.dart';
+import 'package:pautas/src/app/theme/text_styles.dart';
 
 class DetailStep extends StatelessWidget {
   DetailStep({Key key, this.title = "", this.text, this.image}) : super(key: key);
@@ -9,7 +9,7 @@ class DetailStep extends StatelessWidget {
   final String text;
   final String image;
 
-  final TextStylesConsts stylesConsts = TextStylesConsts();
+  final TextStyles stylesConsts = TextStyles();
 
   @override
   Widget build(BuildContext context) {

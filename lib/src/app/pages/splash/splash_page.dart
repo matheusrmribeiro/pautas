@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pautas/src/app/controllers/auth_controller.dart';
-import 'package:pautas/src/app/theme/color_consts.dart';
+import 'package:pautas/src/app/theme/colors.dart';
 import 'package:pautas/src/app/utils/enums.dart';
 
 class SplashPage extends StatefulWidget {
@@ -55,7 +55,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeConsts.backgroundColor,
+      backgroundColor: AppColors.backgroundColor,
       body: Center(
         child: AnimatedOpacity(
           opacity: _opacity,
