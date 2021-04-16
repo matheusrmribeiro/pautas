@@ -38,7 +38,7 @@ class _GuidelineItemState extends State<GuidelineItem> {
             child: Container(
               margin: EdgeInsets.only(left: 10),
               decoration: BoxDecoration(
-                color: AppColors.textFieldColor,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(10),
                   bottomRight: Radius.circular(10)

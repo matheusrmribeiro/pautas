@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pautas/src/domain/entities/base_entity.dart';
 
 class GuidelineEntity extends BaseEntity{
@@ -10,6 +11,8 @@ class GuidelineEntity extends BaseEntity{
   String description;
   String details;
   bool done;
+  Timestamp begin;
+  Timestamp end;
 
   @override
   void assignValues(Map<String, dynamic> map) {
@@ -19,6 +22,8 @@ class GuidelineEntity extends BaseEntity{
     description = map["description"];
     details = map["details"];
     done = map["done"];
+    begin = map["begin"];
+    end = map["end"];
   }
 
   GuidelineEntity.fromMap(Map<String, dynamic> map) { assignValues(map); }
@@ -30,7 +35,9 @@ class GuidelineEntity extends BaseEntity{
     "title": title,
     "description": description,
     "details": details,
-    "done": done
+    "done": done,
+    "begin": begin,
+    "end": end
   };
 
 }

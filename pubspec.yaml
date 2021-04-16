@@ -24,7 +24,8 @@ dependencies:
   simple_animations: ^3.0.3
   flutter_svg: ^0.21.0+1
   flutter_feather_icons: ^2.0.0+1
-
+  flutter_staggered_animations: ^1.0.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

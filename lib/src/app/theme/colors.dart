@@ -4,6 +4,7 @@ class AppColors {
   static const primaryColor = Colors.indigo;
   static const accentColor = Colors.orange;
   static const backgroundColor = Color(0xFF5C6BC0);
+  static const backgroundAccentColor = Color(0xFFFFF3E0);
   static const guidelineItemColor = Color(0xFF9FA8DA); 
   static const hintColor = Color(0xFF7986CB); 
   static const textPrimaryColor = Colors.white;

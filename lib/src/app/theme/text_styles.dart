@@ -104,4 +104,33 @@ class TextStyles {
     fontWeight: FontWeight.bold,
   );
 
+  final titleHint = GoogleFonts.montserrat(
+    fontSize: 15, 
+    color: AppColors.textFieldColor,
+    fontWeight: FontWeight.normal);   
+
+  final title = GoogleFonts.montserrat(
+    fontSize: 15, 
+    color: AppColors.hintColor,
+    fontWeight: FontWeight.normal);   
+
+  final weekDayName = GoogleFonts.montserrat(
+    fontSize: 25, 
+    color: Colors.black54,
+    fontWeight: FontWeight.bold);
+
+  final weekDay = GoogleFonts.montserrat(
+    fontSize: 25, 
+    color: AppColors.hintColor,
+    fontWeight: FontWeight.normal);
+
+  final tabActive = GoogleFonts.montserrat(
+    fontSize: 15, 
+    color: AppColors.hintColor,
+    fontWeight: FontWeight.w500);
+
+  final tabInactive = GoogleFonts.montserrat(
+    fontSize: 15, 
+    color: AppColors.textFieldColor,
+    fontWeight: FontWeight.normal);
 }
