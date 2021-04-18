@@ -1,7 +1,7 @@
 # Minhas Pautas
  Guidelines controler
  
-**What I learned?**
+**What I've learned?**
 * MobX
 * Listing
 * Firebase
