@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pautas/src/app/controllers/root_controller.dart';
 import 'package:pautas/src/app/pages/guidelines/guidelines_page.dart';
-import 'package:pautas/src/app/pages/root/widgets/tab_widget.dart';
+import 'package:pautas/src/app/widgets/tab_widget.dart';
 import 'package:pautas/src/app/pages/root/widgets/title_widget.dart';
 import 'package:pautas/src/app/theme/colors.dart';
 
@@ -23,7 +23,13 @@ class _RootPageState extends ModularState<RootPage, RootController> {
           children: [
             TitleWidget(),
             SizedBox(height: 30,),
-            TabWidget(controller: controller.pageController,),
+            TabWidget(
+              controller: controller.pageController,
+              tabs: [
+                TabEntity(text: "Em progresso"),
+                TabEntity(text: "Finalizadas")
+              ],
+            ),
             Expanded(
               child: PageView(
                 controller: controller.pageController,

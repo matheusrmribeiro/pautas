@@ -18,6 +18,15 @@ class GuidelineItem extends StatefulWidget {
 class _GuidelineItemState extends State<GuidelineItem> {
   final TextStyles textStyles = TextStyles();
 
+  String _tasksDone() =>
+    widget.guidelineEntity.tasks.where((element) => element.done).toList().length.toString();
+
+  String _tasksTotal() =>
+    widget.guidelineEntity.tasks.length.toString();
+
+  bool _allDone() => (widget.guidelineEntity.tasks.isEmpty) ||
+    (widget.guidelineEntity.tasks.where((element) => !element.done).isEmpty);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +41,9 @@ class _GuidelineItemState extends State<GuidelineItem> {
             .then((value) => widget.controller.getData());
           },
           child: Card(
-            color: AppColors.guidelineItemColor,
+            color: (_allDone())
+              ? AppColors.guidelineItemColor
+              : AppColors.textFieldSuccessColor,
             margin: EdgeInsets.zero,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: Container(
@@ -58,6 +69,7 @@ class _GuidelineItemState extends State<GuidelineItem> {
                       ),
                     ),
                     Expanded(
+                      flex: 2,
                       child: Padding(
                         padding: EdgeInsets.only(right: 40),
                         child: Column(
@@ -71,6 +83,15 @@ class _GuidelineItemState extends State<GuidelineItem> {
                             ),
                           ],
                         ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Text((_tasksTotal() == "0") 
+                        ? ""
+                        : "Tarefas finalizadas: ${_tasksDone()} de ${_tasksTotal()}",
+                        overflow: TextOverflow.ellipsis,
+                        style: textStyles.guidelineItemHint,
                       ),
                     ),
                   ],

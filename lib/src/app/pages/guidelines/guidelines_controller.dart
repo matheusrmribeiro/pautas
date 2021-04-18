@@ -20,8 +20,12 @@ abstract class _GuidelinesControllerBase with Store {
   @observable
   List<GuidelineEntity> guidelines = [];
 
+  @observable
+  bool loading = false;
+
   @action
   Future<void> getData() async {
+    loading = true;
     List<GuidelineEntity> itens = [];
     
     final querySnapshot = await _repository.collectionReference.where("done", isEqualTo: done).get();
@@ -32,20 +36,33 @@ abstract class _GuidelinesControllerBase with Store {
     });
 
     guidelines = itens;
+    loading = false;
   }
 
   @action
-  void updateGuideline(GuidelineEntity guidelineUpdated){
-    guidelines.singleWhere((element) => element.id == guidelineUpdated.id).copy(guidelineUpdated);
+  void changeStatus(GuidelineEntity guideline) {
+    guideline.done = !guideline.done;
+    guideline.tasks.forEach((element) { element.done = guideline.done; });
+    update(guideline);
+    getData();
   }
 
   @action
-  void updateStatus(GuidelineEntity guideline){
+  void updateTask(GuidelineEntity guideline) {
+    if (guideline.done) {
+      if (guideline.tasks.where((element) => !element.done).isNotEmpty)
+        guideline.done = false;
+    }
+    update(guideline);
+  }
+
+  @action
+  void update(GuidelineEntity guideline) {
     _repository.update(guideline);
   }
 
   @action
-  void deleteGuideline(GuidelineEntity guideline){
+  void deleteGuideline(GuidelineEntity guideline) {
     _repository.delete(guideline.id);
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pautas/src/app/theme/colors.dart';
 import 'package:pautas/src/app/theme/text_field_styles.dart';
 import 'package:pautas/src/app/theme/text_styles.dart';
 import 'package:pautas/src/app/widgets/customTextFormField.dart';
@@ -35,19 +36,27 @@ class Step1 extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Stack(
         children: <Widget>[
-          Header(title: "Inclusão de nova pauta", subtitle: "Qual o título dessa pauta?"),
+          Header(title: "Nova pauta", subtitle: "Qual o título dessa pauta?"),
           Align(
             alignment: Alignment.center,
             child: Container(
               margin: EdgeInsets.all(10),
               child: CustomTextFormField(
                 controller: _textController,
-                decoration: TextFieldStylesConsts.textFieldCadastre(hint: "O título é...", label: "TÍTULO"),
+                decoration: TextFieldStylesConsts.textFieldCadastreWithBackground(
+                  context: context,
+                  hint: "O título é...", 
+                  label: "TÍTULO",
+                  backgroundColor: AppColors.hintColor,
+                ),
                 maxLength: 40,
+                minLines: 2,
+                maxLines: 2,
                 style: textStylesConsts.textFieldWhite,
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.sentences,
                 onFieldSubmited: (String text) {
+                  controller.nextPage();
                   Modular.to.pop();
                 },
               ),

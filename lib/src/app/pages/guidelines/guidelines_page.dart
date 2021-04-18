@@ -49,31 +49,34 @@ class _GuidelinesPageState extends State<GuidelinesPage> {
           child: Observer(
             builder: (_) {
               return (controller.guidelines.length == 0)
-                ? TweenAnimationBuilder(
-                  tween: Tween<double>(begin: 0, end: 1), 
-                  duration: Duration(milliseconds: 2000),
-                  curve: Curves.fastOutSlowIn,
-                  builder: (_, value, child) {
-                    return Opacity(
-                      opacity: value,
-                      child: child,
-                    );
-                  },
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SvgPicture.asset("assets/images/login/no_data.svg",
-                          width: MediaQuery.of(context).size.height * 0.5,
-                          height: MediaQuery.of(context).size.width * 0.6,
-                        ),
-                        Text("Não existem pautas ${(controller.done) ? "finalizadas" : "abertas"}...",
-                          style: textStyles.h2Primary,
-                        )
-                      ],
+                ?  (!controller.loading) 
+                  ? TweenAnimationBuilder(
+                    tween: Tween<double>(begin: 0, end: 1), 
+                    duration: Duration(milliseconds: 2000),
+                    curve: Curves.fastOutSlowIn,
+                    builder: (_, value, child) {
+                      return Opacity(
+                        opacity: value,
+                        child: child,
+                      );
+                    },
+                    child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SvgPicture.asset("assets/images/login/no_data.svg",
+                            width: MediaQuery.of(context).size.height * 0.5,
+                            height: MediaQuery.of(context).size.width * 0.6,
+                          ),
+                          Text("Não existem pautas ${(controller.done) ? "finalizadas" : "abertas"}...",
+                            style: textStyles.h2Primary,
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                )
+                  )
+                  :
+                  Container()
                 : AnimationLimiter(
                   child: ListView.builder(
                     itemCount: controller.guidelines.length,

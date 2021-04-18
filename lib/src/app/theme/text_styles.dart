@@ -60,6 +60,11 @@ class TextStyles {
     color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.normal);
 
+  final textFieldNormal = GoogleFonts.montserrat(
+    fontSize: 20, 
+    color: AppColors.backgroundAccentColor,
+    fontWeight: FontWeight.normal);
+
   final popupCancelButtonColor = GoogleFonts.montserrat(
     color: AppColors.textPrimaryColor,
     fontWeight: FontWeight.w500);       
@@ -78,6 +83,11 @@ class TextStyles {
     color: Colors.black54,
     fontWeight: FontWeight.normal);    
 
+  final guidelineItemHint = GoogleFonts.montserrat(
+    fontSize: 14, 
+    color: AppColors.hintColor,
+    fontWeight: FontWeight.normal);    
+
   final headerInfo = GoogleFonts.roboto(
     fontSize: 12, 
     color: AppColors.hintColor,
@@ -86,12 +96,12 @@ class TextStyles {
   final guidelineDetailTitle = GoogleFonts.montserrat(
     fontSize: 20, 
     color: AppColors.textFieldColor,
-    fontWeight: FontWeight.bold); 
+    fontWeight: FontWeight.w300); 
   
   final guidelineDetailInfo = GoogleFonts.montserrat(
     fontSize: 18, 
     color: AppColors.textFieldColor,
-    fontWeight: FontWeight.normal);      
+    fontWeight: FontWeight.w500);      
 
   get customTextFieldLabel => GoogleFonts.roboto(
     fontSize: 40, 
@@ -133,4 +143,17 @@ class TextStyles {
     fontSize: 15, 
     color: AppColors.textFieldColor,
     fontWeight: FontWeight.normal);
+
+  final taskNormal = GoogleFonts.montserrat(
+    fontSize: 20, 
+    color: AppColors.textFieldColor,
+    fontWeight: FontWeight.w500
+  );
+
+  final taskDone = GoogleFonts.montserrat(
+    fontSize: 20, 
+    color: AppColors.accentColor,
+    fontWeight: FontWeight.w500
+  );
+
 }

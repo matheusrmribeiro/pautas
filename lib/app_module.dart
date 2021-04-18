@@ -1,6 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pautas/src/app/pages/guideline_cadastre/guideline_cadastre_page.dart';
+import 'package:pautas/src/app/pages/guideline_cadastre/widgets/step_tasks.dart';
 import 'package:pautas/src/app/pages/guidelines/guidelines_detail_page.dart';
+import 'package:pautas/src/app/pages/guidelines/widgets/tasks_widget.dart';
 import 'package:pautas/src/app/pages/profile/profile_page.dart';
 import 'package:pautas/src/app/pages/root/root_page.dart';
 import 'src/app/controllers/auth_controller.dart';
@@ -32,7 +34,12 @@ class AppModule extends Module{
     ChildRoute("/user/cadastre", child: (_, args) => UserCadastrePage(),),
     ChildRoute("/root", child: (_, args) => RootPage(),),
     ChildRoute("/profile", child: (_, args) => ProfilePage(),),
-    ChildRoute("/guideline/cadastre", child: (_, args) => GuidelineCadastrePage(),),
+    ChildRoute("/guideline/cadastre", child: (_, args) => 
+      GuidelineCadastrePage(),
+    ),
+    ChildRoute("/guideline/cadastre/edit", child: (_, args) => 
+      GuidelineCadastrePage(index: args.data[0], guideline: args.data[1],),
+    ),
     ChildRoute("/guideline/detail", 
       child: (_, args) => GuidelineDetailPage(controller: args.data[0], guideline: args.data[1])
     ),

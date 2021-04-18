@@ -4,12 +4,19 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pautas/src/app/theme/colors.dart';
 import 'package:pautas/src/app/widgets/custom_scroll_behavior.dart';
 import 'package:pautas/src/app/widgets/navigator_buttons.dart';
+import 'package:pautas/src/domain/entities/guideline_entity.dart';
 import 'guideline_cadastre_controller.dart';
 import 'widgets/step1.dart';
 import 'widgets/step2.dart';
 import 'widgets/step3.dart';
+import 'widgets/step_tasks.dart';
 
 class GuidelineCadastrePage extends StatefulWidget {
+  GuidelineCadastrePage({this.guideline, this.index});
+
+  final GuidelineEntity guideline;
+  final int index;
+
   @override
   _GuidelineCadastreState createState() => _GuidelineCadastreState();
 }
@@ -19,25 +26,28 @@ class _GuidelineCadastreState extends State<GuidelineCadastrePage> {
   final GuidelineCadastreController controller = GuidelineCadastreController();
   final List<Widget> steps = [];
 
-  PageController _pageController;
-
   @override
   void initState() {
     super.initState();
-    
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) { 
+      controller.pageController.jumpToPage(widget.index);
+    });
+
+    if (widget.guideline != null)
+      controller.setGuideline(widget.guideline);
+
     steps.addAll([
       Step1(controller: controller), 
       Step2(controller: controller),
       Step3(controller: controller),
+      StepTasks(controller: controller), 
     ]);
-
-    _pageController = PageController();
-
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
+    controller.pageController.dispose();
     super.dispose();
   }
 
@@ -64,7 +74,7 @@ class _GuidelineCadastreState extends State<GuidelineCadastrePage> {
             Container(
               height: MediaQuery.of(context).size.height - 150,
               child: PageView(
-                controller: _pageController,
+                controller: controller.pageController,
                 physics: NeverScrollableScrollPhysics(),
                 children: steps,
                 onPageChanged: (int index) {
@@ -75,7 +85,7 @@ class _GuidelineCadastreState extends State<GuidelineCadastrePage> {
             Observer(
               builder: (_) {
                 return NavigatorButtons(
-                  pageController: _pageController, 
+                  pageController: controller.pageController, 
                   currentPage: controller.currentPage, 
                   totalPages: steps.length,
                   nextCallback: controller.stepsCallback[controller.currentPage]

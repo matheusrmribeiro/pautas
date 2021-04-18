@@ -149,7 +149,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             ),
           Positioned(
             bottom: 0,
-            left: 20,
+            left: (widget.labelText.isEmpty) 
+              ? 0 
+              : 20,
             right: 0,
             top: 35,
             child: TextFormField(
@@ -165,7 +167,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 : (isAncestor) ? null : widget.maxLength,
               maxLines: (isAncestor) 
                 ? widget.maxLines
-                : null,
+                : 1,
               minLines: (isAncestor)
                 ? (widget.minLines == 1) ? null : widget.minLines
                 : null,

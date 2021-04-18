@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobx/mobx.dart';
+import 'package:pautas/src/app/pages/guidelines/widgets/main_widget.dart';
+import 'package:pautas/src/app/pages/guidelines/widgets/tasks_widget.dart';
 import 'package:pautas/src/app/theme/colors.dart';
 import 'package:pautas/src/app/theme/text_styles.dart';
+import 'package:pautas/src/app/widgets/tab_widget.dart';
 import 'package:pautas/src/domain/entities/guideline_entity.dart';
+import 'package:pautas/src/domain/entities/task_entity.dart';
 
 import 'guidelines_controller.dart';
 
@@ -22,11 +28,16 @@ class _GuidelineDetailPageState extends State<GuidelineDetailPage> {
 
   GuidelineEntity guideline;
   final TextStyles _textStylesConsts = TextStyles();
-  
+  final PageController pageController = PageController();
+
+  @observable
+  ObservableList<TaskEntity> tasks = <TaskEntity>[].asObservable();
+
   @override
   void initState() {
     super.initState();
     guideline = widget.guideline;
+    tasks = guideline.tasks.asObservable();
   }
 
   Future<bool> _showDeleteDialog() async {
@@ -78,6 +89,7 @@ class _GuidelineDetailPageState extends State<GuidelineDetailPage> {
           child: SafeArea(
             child: Container(
               width: double.infinity,
+              height: MediaQuery.of(context).size.height,
               child: Stack(
                 children: [
                   Container(
@@ -102,9 +114,7 @@ class _GuidelineDetailPageState extends State<GuidelineDetailPage> {
                               color: Colors.white,
                             ),
                             onPressed: () {
-                              guideline.done = !guideline.done;
-                              widget.controller.updateStatus(guideline);
-                              widget.controller.getData();
+                              widget.controller.changeStatus(guideline);
                               Navigator.of(context).pop();
                             },
                           ),
@@ -127,84 +137,30 @@ class _GuidelineDetailPageState extends State<GuidelineDetailPage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: AppBar().preferredSize.height),
+                    margin: EdgeInsets.only(top: AppBar().preferredSize.height + 25),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 10),
+                          child: TabWidget(
+                            controller: pageController,
+                            tabs: [
+                              TabEntity(text: "Principal"),
+                              TabEntity(text: "Tarefas")
+                            ],
+                            activeTextStyle: _textStylesConsts.tabInactive.copyWith(fontWeight: FontWeight.bold),
+                            inactiveTextStyle: _textStylesConsts.tabActive.copyWith(fontWeight: FontWeight.normal),
+                            hintColor: AppColors.accentColor,
+                          ),
+                        ),
                         Expanded(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                                  child: Text(guideline.title,
-                                    maxLines: 2,
-                                    softWrap: true,
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 30, 
-                                      color: AppColors.textFieldColor,
-                                      fontWeight: FontWeight.w500)
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(20, 40, 20, 10),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Autor",
-                                              style: _textStylesConsts.guidelineDetailTitle
-                                            ),
-                                            SizedBox(height: 10),
-                                            Text(guideline.author,
-                                              style: _textStylesConsts.guidelineDetailInfo
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 40),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Descrição",
-                                              style: _textStylesConsts.guidelineDetailTitle
-                                            ),
-                                            SizedBox(height: 10),
-                                            RichText(
-                                              text: TextSpan(
-                                                text: guideline.details,
-                                                style: _textStylesConsts.guidelineDetailInfo
-                                              ),
-                                              softWrap: true,
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(height: 40),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Detalhes",
-                                              style: _textStylesConsts.guidelineDetailTitle
-                                            ),
-                                            SizedBox(height: 10),
-                                            RichText(
-                                              text: TextSpan(
-                                                text: guideline.details,
-                                                style: _textStylesConsts.guidelineDetailInfo
-                                              ),
-                                              softWrap: true,
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ),
-                              ],
-                            ),
+                          child: PageView(
+                            controller: pageController,
+                            children: [
+                              MainWidget(guideline),
+                              TasksWidget(guideline: guideline, controller: widget.controller),
+                            ],
                           ),
                         ),
                       ],

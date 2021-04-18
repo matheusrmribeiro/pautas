@@ -82,6 +82,7 @@ class TextFieldStylesConsts {
     IconData prefixIcon, 
     IconData suffixIcon, 
     String prefixText,
+    Color backgroundColor,
     Function suffixTap
   }) => InputDecoration(
     prefixText: prefixText,
@@ -92,13 +93,15 @@ class TextFieldStylesConsts {
       ? null 
       : GestureDetector(
         onTap: suffixTap as void Function(),
-          child: Icon(suffixIcon, color: Theme.of(context).iconTheme.color)
+          child: Icon(suffixIcon, 
+            color: Theme.of(context).iconTheme.color,
+          )
         ),
     hintText: hint,
     hintStyle: TextStyle(
       color: Theme.of(context).iconTheme.color.withAlpha(150),
     ),
-    fillColor: Theme.of(context).cardColor,
+    fillColor: (backgroundColor == null) ? Theme.of(context).cardColor : backgroundColor,
     filled: true,
     contentPadding: EdgeInsets.all(10),
     enabledBorder: OutlineInputBorder(
@@ -110,6 +113,74 @@ class TextFieldStylesConsts {
         ),
     ),
     border: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.transparent,
+      ),
+      borderRadius: const BorderRadius.all(
+          const Radius.circular(12.0),
+        ),
+    ),
+  );
+
+static InputDecoration textFieldCadastreWithBackground({
+    @required BuildContext context, 
+    String hint, 
+    String label, 
+    IconData prefixIcon, 
+    IconData suffixIcon, 
+    String prefixText,
+    Color backgroundColor,
+    Function suffixTap
+  }) => InputDecoration(
+    prefixText: prefixText,
+    prefixIcon: (prefixIcon == null) 
+      ? null 
+      : Icon(prefixIcon, color: Theme.of(context).iconTheme.color),
+    suffix: (suffixIcon == null) 
+      ? null 
+      : GestureDetector(
+        onTap: suffixTap as void Function(),
+          child: Icon(suffixIcon, 
+            color: Theme.of(context).iconTheme.color,
+          )
+        ),
+    hintText: hint,
+    hintStyle: TextStyle(
+      color: Theme.of(context).iconTheme.color.withAlpha(150),
+    ),
+    errorText: label,
+    errorStyle: TextStyle(
+      color: AppColors.textFieldColor,
+      fontSize: 15,
+    ),
+    fillColor: (backgroundColor == null) ? Theme.of(context).cardColor : backgroundColor,
+    filled: true,
+    contentPadding: EdgeInsets.all(12),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.transparent,
+      ),
+      borderRadius: const BorderRadius.all(
+          const Radius.circular(12.0),
+        ),
+    ),
+    border: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.transparent,
+      ),
+      borderRadius: const BorderRadius.all(
+          const Radius.circular(12.0),
+        ),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.transparent,
+      ),
+      borderRadius: const BorderRadius.all(
+          const Radius.circular(12.0),
+        ),
+    ),
+    errorBorder: OutlineInputBorder(
       borderSide: BorderSide(
         color: Colors.transparent,
       ),
