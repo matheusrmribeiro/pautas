@@ -8,7 +8,6 @@ import 'package:pautas/src/domain/entities/guideline_entity.dart';
 import 'guideline_cadastre_controller.dart';
 import 'widgets/step1.dart';
 import 'widgets/step2.dart';
-import 'widgets/step3.dart';
 import 'widgets/step_tasks.dart';
 
 class GuidelineCadastrePage extends StatefulWidget {
@@ -40,7 +39,6 @@ class _GuidelineCadastreState extends State<GuidelineCadastrePage> {
     steps.addAll([
       Step1(controller: controller), 
       Step2(controller: controller),
-      Step3(controller: controller),
       StepTasks(controller: controller), 
     ]);
   }

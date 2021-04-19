@@ -17,7 +17,6 @@ class GuidelineEntity extends BaseEntity{
   String author;
   String title;
   String description;
-  String details;
   bool done;
   Timestamp begin;
   Timestamp end;
@@ -29,7 +28,6 @@ class GuidelineEntity extends BaseEntity{
     author = map["author"];
     title = map["title"];
     description = map["description"];
-    details = map["details"];
     done = map["done"];
     begin = map["begin"];
     end = map["end"];
@@ -44,7 +42,6 @@ class GuidelineEntity extends BaseEntity{
     "author": author,
     "title": title,
     "description": description,
-    "details": details,
     "done": done,
     "begin": begin,
     "end": end,

@@ -71,24 +71,7 @@ class _MainWidgetState extends State<MainWidget> {
                           SizedBox(height: 10),
                           RichText(
                             text: TextSpan(
-                              text: widget.guideline.details,
-                              style: _textStylesConsts.guidelineDetailInfo
-                            ),
-                            softWrap: true,
-                          )
-                        ],
-                      ),
-                      SizedBox(height: 40),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Detalhes",
-                            style: _textStylesConsts.guidelineDetailTitle
-                          ),
-                          SizedBox(height: 10),
-                          RichText(
-                            text: TextSpan(
-                              text: widget.guideline.details,
+                              text: widget.guideline.description,
                               style: _textStylesConsts.guidelineDetailInfo
                             ),
                             softWrap: true,

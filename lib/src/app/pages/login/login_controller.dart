@@ -20,9 +20,6 @@ abstract class _LoginControllerBase with Store {
   @observable
   AuthStatus statusEmail = AuthStatus.logoff;
 
-  @observable
-  AuthStatus statusGoogle = AuthStatus.logoff;
-
   dispose() {}
 
   @action
@@ -51,20 +48,18 @@ abstract class _LoginControllerBase with Store {
       statusEmail = AuthStatus.logoff;
 
       switch (error.code) {
-        case "ERROR_INVALID_EMAIL":
+        case "invalid-email":
           Toast.showMessage("Email ou senha incorreto!", duration: 5, toastKind: ToastKind.error);
           break;
-        case "ERROR_WRONG_PASSWORD":
+        case "wrong-password":
           Toast.showMessage("Email ou senha incorreto!", duration: 5, toastKind: ToastKind.error);
           break;
-        case "ERROR_USER_NOT_FOUND":
+        case "user-not-found":
           Toast.showMessage("Email não encontrado.", duration: 5, toastKind: ToastKind.error);
           break;  
         default:
-          Toast.showMessage("Oops! Acho que ocorreu algum erro ao fazer o login :(", duration: 5, toastKind: ToastKind.error);
+          Toast.showMessage("Erro desconhecido ao fazer o login.", duration: 5, toastKind: ToastKind.error);
       }
-     
-      
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pautas/src/data/repositories/firebase_base_repository.dart';
 import 'package:pautas/src/domain/entities/guideline_entity.dart';
@@ -28,7 +29,9 @@ abstract class _GuidelinesControllerBase with Store {
     loading = true;
     List<GuidelineEntity> itens = [];
     
-    final querySnapshot = await _repository.collectionReference.where("done", isEqualTo: done).get();
+    final querySnapshot = await _repository.collectionReference
+    .where("owner", isEqualTo: FirebaseAuth.instance.currentUser.uid)
+    .where("done", isEqualTo: done).get();
     querySnapshot.docs.forEach((element) {
       GuidelineEntity entity = GuidelineEntity.fromMap(element.data());
       entity.id = element.id;

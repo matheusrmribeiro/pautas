@@ -65,8 +65,10 @@ abstract class _AuthControllerBase with Store {
   Future logout({goToLogin = true}) async {
     await _authRepository.logOut();
     firebaseUser = null;
-    if (goToLogin)
+    if (goToLogin){
+      Modular.to.popUntil((route) => route.isFirst);
       Modular.to.pushReplacementNamed('/login');
+    }
   }
 
 }
