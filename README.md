@@ -5,6 +5,7 @@
 * MobX
 * Listing
 * Firebase
+* Clean Code
 
 **Tested on**
 - [X] Android

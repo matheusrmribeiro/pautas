@@ -78,19 +78,6 @@ class _MainWidgetState extends State<MainWidget> {
                           )
                         ],
                       ),
-                      SizedBox(height: 40),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 20,
-                            child: Text("Tarefas",
-                              style: _textStylesConsts.guidelineDetailTitle
-                            ),
-                          ),
-                          SizedBox(height: 10),                      
-                        ],
-                      ),
                     ],
                   ),
                 )

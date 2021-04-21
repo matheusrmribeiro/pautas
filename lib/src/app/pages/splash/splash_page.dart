@@ -60,7 +60,7 @@ class _SplashPageState extends State<SplashPage> {
         child: AnimatedOpacity(
           opacity: _opacity,
           duration: Duration(seconds: 1),
-          child: Text("Pautas",
+          child: Text("Minhas Pautas",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
