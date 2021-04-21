@@ -3,6 +3,7 @@
  
 **What I've learned?**
 * MobX
+* Modular
 * Listing
 * Firebase
 * Clean Code
