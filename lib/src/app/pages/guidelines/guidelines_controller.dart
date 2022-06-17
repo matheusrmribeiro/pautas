@@ -15,7 +15,7 @@ abstract class _GuidelinesControllerBase with Store {
 
   final FirebaseRepositoyBase _repository = FirebaseRepositoyBase<GuidelineEntity>(
     collection: "guidelines", 
-    fromMap: (map) => GuidelineEntity.fromMap(map)
+    fromMap: (map) => GuidelineEntity.fromMap(map as Map<String, dynamic>)
   );
 
   @observable
@@ -30,10 +30,10 @@ abstract class _GuidelinesControllerBase with Store {
     List<GuidelineEntity> itens = [];
     
     final querySnapshot = await _repository.collectionReference
-    .where("owner", isEqualTo: FirebaseAuth.instance.currentUser.uid)
+    .where("owner", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
     .where("done", isEqualTo: done).get();
     querySnapshot.docs.forEach((element) {
-      GuidelineEntity entity = GuidelineEntity.fromMap(element.data());
+      GuidelineEntity entity = GuidelineEntity.fromMap(element.data() as Map<String, dynamic>);
       entity.id = element.id;
       itens.add(entity);
     });
@@ -44,16 +44,16 @@ abstract class _GuidelinesControllerBase with Store {
 
   @action
   void changeStatus(GuidelineEntity guideline) {
-    guideline.done = !guideline.done;
-    guideline.tasks.forEach((element) { element.done = guideline.done; });
+    guideline.done = !guideline.done!;
+    guideline.tasks!.forEach((element) { element.done = guideline.done; });
     update(guideline);
     getData();
   }
 
   @action
   void updateTask(GuidelineEntity guideline) {
-    if (guideline.done) {
-      if (guideline.tasks.where((element) => !element.done).isNotEmpty)
+    if (guideline.done!) {
+      if (guideline.tasks!.where((element) => !element.done!).isNotEmpty)
         guideline.done = false;
     }
     update(guideline);

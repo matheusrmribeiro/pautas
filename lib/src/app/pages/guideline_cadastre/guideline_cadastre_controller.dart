@@ -23,7 +23,7 @@ abstract class _UserCadastreControllerBase with Store {
   int currentPage = 0;
 
   @observable
-  GuidelineEntity newGuideline = GuidelineEntity();
+  GuidelineEntity? newGuideline = GuidelineEntity();
 
   @observable
   ObservableList<TaskEntity> tasks = <TaskEntity>[].asObservable();
@@ -32,7 +32,7 @@ abstract class _UserCadastreControllerBase with Store {
 
   void setGuideline(GuidelineEntity guideline) {
     newGuideline = guideline;
-    tasks = guideline.tasks.asObservable();
+    tasks = guideline.tasks!.asObservable();
   }
 
   @action
@@ -48,13 +48,13 @@ abstract class _UserCadastreControllerBase with Store {
 
   @action
   Future<void> addGuideline() async {
-    newGuideline.done = false;
-    newGuideline.owner = Modular.get<UserEntity>().id;
-    newGuideline.author = Modular.get<UserEntity>().name;
-    newGuideline.tasks = tasks;
+    newGuideline!.done = false;
+    newGuideline!.owner = Modular.get<UserEntity>().id;
+    newGuideline!.author = Modular.get<UserEntity>().name;
+    newGuideline!.tasks = tasks;
     
     try{
-      if (newGuideline.id == null) {
+      if (newGuideline!.id == null) {
         await _repository.add(newGuideline);
         Toast.showMessage("Nova pauta adicionada!", duration: 5, toastKind: ToastKind.success);
         Modular.to.pop();
@@ -70,7 +70,7 @@ abstract class _UserCadastreControllerBase with Store {
   }
 
   void nextPage() async {
-    if (await stepsCallback[currentPage]())
+    if (await stepsCallback[currentPage]!())
      pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeOut);
   }
 

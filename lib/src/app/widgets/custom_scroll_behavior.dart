@@ -10,7 +10,7 @@ class NoGlowBehavior extends ScrollBehavior {
 class CustomScrollConfiguration extends StatelessWidget{
   CustomScrollConfiguration({this.child});
 
-  final Widget child;
+  final Widget? child;
   
   @override
   Widget build(BuildContext context) {

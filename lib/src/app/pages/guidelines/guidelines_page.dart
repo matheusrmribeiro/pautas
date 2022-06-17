@@ -22,7 +22,7 @@ class GuidelinesPage extends StatefulWidget {
 class _GuidelinesPageState extends State<GuidelinesPage> {
   
   final TextStyles textStyles = TextStyles();
-  GuidelinesController controller;
+  late GuidelinesController controller;
   RootController rootController = Modular.get<RootController>();
 
   @override
@@ -56,7 +56,7 @@ class _GuidelinesPageState extends State<GuidelinesPage> {
                     curve: Curves.fastOutSlowIn,
                     builder: (_, value, child) {
                       return Opacity(
-                        opacity: value,
+                        opacity: value! as double,
                         child: child,
                       );
                     },

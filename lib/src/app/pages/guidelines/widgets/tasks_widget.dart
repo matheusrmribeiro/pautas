@@ -13,8 +13,8 @@ import 'package:pautas/src/domain/entities/task_entity.dart';
 class TasksWidget extends StatefulWidget {
   TasksWidget({this.guideline, this.controller});
 
-  final GuidelineEntity guideline;
-  final GuidelinesController controller;
+  final GuidelineEntity? guideline;
+  final GuidelinesController? controller;
 
   @override
   _TasksWidgetState createState() => _TasksWidgetState();
@@ -26,7 +26,7 @@ class _TasksWidgetState extends State<TasksWidget> {
   @override
   void initState() {
     super.initState();
-    tasks.addAll(widget.guideline.tasks);
+    tasks.addAll(widget.guideline!.tasks!);
   }
 
   final List<TaskEntity> tasks = <TaskEntity>[];
@@ -34,19 +34,19 @@ class _TasksWidgetState extends State<TasksWidget> {
   void onTap(int index) {
     setState(() {
       tasks[index] = TaskEntity(
-        done: !tasks[index].done,
+        done: !tasks[index].done!,
         text: tasks[index].text
       );
     });
-    widget.guideline.tasks[index] = tasks[index];
-    widget.controller.updateTask(widget.guideline);
+    widget.guideline!.tasks![index] = tasks[index];
+    widget.controller!.updateTask(widget.guideline!);
   }
 
   String _tasksOpen() =>
-    tasks.where((element) => !element.done).toList().length.toString();
+    tasks.where((element) => !element.done!).toList().length.toString();
 
   String _tasksDone() =>
-    tasks.where((element) => element.done).toList().length.toString();
+    tasks.where((element) => element.done!).toList().length.toString();
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +76,10 @@ class _TasksWidgetState extends State<TasksWidget> {
                       cadastre.newGuideline = widget.guideline;
                       Modular.to.pushNamed("/guideline/cadastre/edit", arguments: [3, widget.guideline])
                       .then((value) {
-                        widget.guideline.tasks = (value as GuidelineEntity).tasks;
+                        widget.guideline!.tasks = (value as GuidelineEntity).tasks;
                         setState((){
                           tasks.clear();
-                          tasks.addAll(widget.guideline.tasks);
+                          tasks.addAll(widget.guideline!.tasks!);
                         });
                       });
                     },
@@ -119,8 +119,8 @@ class _TasksWidgetState extends State<TasksWidget> {
                         onTap(index);
                       },
                       title: Text(
-                        task.text,
-                        style: (task.done)
+                        task.text!,
+                        style: task.done!
                           ? _textStylesConsts.taskDone
                           : _textStylesConsts.taskNormal,
                       ),

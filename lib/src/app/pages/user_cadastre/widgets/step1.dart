@@ -9,8 +9,8 @@ import 'header.dart';
 
 class Step1 extends StatelessWidget {
 
-  Step1({@required this.controller}) {
-    _textController.text = controller.newUser.name;
+  Step1({required this.controller}) {
+    _textController.text = controller.newUser.name!;
     controller.addStepCallback((){
       bool goNextPage = false;
 
@@ -47,7 +47,7 @@ class Step1 extends StatelessWidget {
                 style: textStylesConsts.textFieldWhite,
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.words,
-                onFieldSubmited: (String text) {
+                onFieldSubmited: (String? text) {
                   Modular.to.pop();
                 },
               ),

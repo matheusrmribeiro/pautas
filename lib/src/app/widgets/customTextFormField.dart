@@ -31,28 +31,28 @@ class CustomTextFormField extends StatefulWidget {
     this.ancestor = 0
     });
 
-  final Key textKey;
-  final TextInputType keyboardType;
+  final Key? textKey;
+  final TextInputType? keyboardType;
   final String labelText;
-  final Widget icon;
+  final Widget? icon;
   final bool obscureText;
-  final FormFieldValidator<String> validator;
-  final FormFieldSetter<String> onSaved;
-  final FormFieldSetter<String> onFieldSubmited;
-  final ValueChanged<String> onChanged;
-  final String initialValue;
-  final int maxLength;
-  final String hintText;
-  final TextEditingController controller;
-  final EdgeInsetsGeometry margin;
+  final FormFieldValidator<String>? validator;
+  final FormFieldSetter<String>? onSaved;
+  final FormFieldSetter<String>? onFieldSubmited;
+  final ValueChanged<String>? onChanged;
+  final String? initialValue;
+  final int? maxLength;
+  final String? hintText;
+  final TextEditingController? controller;
+  final EdgeInsetsGeometry? margin;
   final bool removeLeftMargin;
   final bool enabled;
-  final TextInputAction textInputAction;
+  final TextInputAction? textInputAction;
   final TextCapitalization textCapitalization;
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
   final bool useStyle;
-  final InputDecoration decoration;
-  final TextStyle style;
+  final InputDecoration? decoration;
+  final TextStyle? style;
   final int maxLines;
   final int minLines;
   int ancestor;
@@ -62,7 +62,7 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  FocusNode node;
+  FocusNode? node;
 
   bool isAncestor = true;
   final double counterTextSize = 40;
@@ -74,12 +74,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
     isAncestor = widget.ancestor == 0;
     if (!isAncestor)
-      node.requestFocus();
+      node!.requestFocus();
   }
 
   @override
   void dispose() {
-    node.dispose();
+    node!.dispose();
     super.dispose();
   }
 
@@ -111,7 +111,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     style: textStyle.h2White,
                   ),
                   onPressed: () {
-                    widget.onFieldSubmited("");
+                    widget.onFieldSubmited!("");
                   }
                 ),
               )
@@ -157,7 +157,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             child: TextFormField(
               onTap: () {
                 if (isAncestor) {
-                  node.unfocus();
+                  node!.unfocus();
                   _openTextDialog(widget);
                 }
               },

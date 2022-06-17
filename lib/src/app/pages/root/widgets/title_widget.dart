@@ -62,7 +62,7 @@ class TitleWidget extends StatelessWidget {
                     Text("Olá, ",
                       style: _textStylesConsts.titleHint
                     ),
-                    Text(user.name,
+                    Text(user.name!,
                       style: _textStylesConsts.title
                     ),
                   ],

@@ -6,13 +6,13 @@ class AuthRepository implements IAuthRepository {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   
   @override
-  Future<void> registerEmailPassword({String email, String password}) async {
-    await firebaseAuth.createUserWithEmailAndPassword(email: email.trim(), password: password.trim());
+  Future<void> registerEmailPassword({String? email, String? password}) async {
+    await firebaseAuth.createUserWithEmailAndPassword(email: email!.trim(), password: password!.trim());
   }
 
   @override
-  Future<User> getEmailPasswordLogin({String email, String password}) async {
-    await firebaseAuth.signInWithEmailAndPassword(email: email.trim(), password: password.trim());
+  Future<User?> getEmailPasswordLogin({String? email, String? password}) async {
+    await firebaseAuth.signInWithEmailAndPassword(email: email!.trim(), password: password!.trim());
     return firebaseAuth.currentUser;
   }
 
@@ -21,7 +21,7 @@ class AuthRepository implements IAuthRepository {
     return await firebaseAuth.signOut();
   }
 
-  User getUser() {
+  User? getUser() {
     return firebaseAuth.currentUser;
   }
 

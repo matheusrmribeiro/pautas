@@ -10,13 +10,13 @@ import 'header.dart';
 
 class Step2 extends StatelessWidget {
 
-  Step2({@required this.controller}) {
-    _textController.text = controller.newGuideline.description;
+  Step2({required this.controller}) {
+    _textController.text = controller.newGuideline!.description!;
     controller.addStepCallback((){
       bool goNextPage = false;
 
       if (_textController.text.isNotEmpty) {
-        controller.newGuideline.description = _textController.text;
+        controller.newGuideline!.description = _textController.text;
         goNextPage = true;
       } else
         Toast.showMessage("É necessária uma breve descrição!", duration: 5);
@@ -54,7 +54,7 @@ class Step2 extends StatelessWidget {
                 style: textStylesConsts.textFieldWhite,
                 keyboardType: TextInputType.multiline,
                 textCapitalization: TextCapitalization.sentences,
-                onFieldSubmited: (String text) {
+                onFieldSubmited: (String? text) {
                   controller.nextPage();
                   Modular.to.pop();
                 },

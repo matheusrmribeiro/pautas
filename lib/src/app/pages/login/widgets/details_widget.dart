@@ -7,7 +7,7 @@ class DetalhesAppWidget extends StatefulWidget {
 }
 
 class _DetalhesAppWidgetState extends State<DetalhesAppWidget> {
-  int pageIndex;
+  int? pageIndex;
 
   @override
   void initState() {

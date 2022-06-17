@@ -3,7 +3,7 @@ import 'package:pautas/src/app/theme/text_styles.dart';
 
 class Header extends StatelessWidget {
 
-  Header({Key key, this.title = "", this.subtitle = ""}) : super(key: key);
+  Header({Key? key, this.title = "", this.subtitle = ""}) : super(key: key);
 
   final TextStyles textStylesConsts = TextStyles();
   final String title;

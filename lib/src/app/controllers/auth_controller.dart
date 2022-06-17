@@ -18,10 +18,10 @@ abstract class _AuthControllerBase with Store {
   AuthStatus status = AuthStatus.loading;
 
   @observable
-  User firebaseUser;
+  User? firebaseUser;
   
   @action
-  setFirebaseUser(User value) async{
+  setFirebaseUser(User? value) async{
     firebaseUser = value;
     if (firebaseUser == null)
       status = AuthStatus.logoff;
@@ -33,8 +33,8 @@ abstract class _AuthControllerBase with Store {
 
   @action
   setUser() async {
-    DocumentSnapshot doc = await FirebaseFirestore.instance.collection("users").doc(firebaseUser.uid).get();
-    Modular.get<UserEntity>().setUser(UserEntity.fromMap(doc.data()))..id = doc.id;    
+    DocumentSnapshot doc = await FirebaseFirestore.instance.collection("users").doc(firebaseUser!.uid).get();
+    Modular.get<UserEntity>().setUser(UserEntity.fromMap(doc.data() as Map<String, dynamic>))..id = doc.id;    
   }
 
   _AuthControllerBase() {
@@ -47,15 +47,15 @@ abstract class _AuthControllerBase with Store {
   }
 
   @action
-  Future loginWithEmailPassword({String email, String password}) async {
+  Future loginWithEmailPassword({String? email, String? password}) async {
     firebaseUser = await _authRepository.getEmailPasswordLogin(email: email, password: password);
     await setUser();
   }
 
   @action
-  Future registerUser({String email, String password, UserEntity newUser}) async {
+  Future registerUser({String? email, String? password, required UserEntity newUser}) async {
     await _authRepository.registerEmailPassword(email: email, password: password);
-    await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser.uid).set(newUser.toMap());
+    await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).set(newUser.toMap());
     await logout(goToLogin: false);
     Toast.showMessage("Usuário criado com sucesso!", duration: 5, toastKind: ToastKind.success);
     Modular.to.pop();

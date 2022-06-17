@@ -15,10 +15,10 @@ import 'guidelines_controller.dart';
 
 class GuidelineDetailPage extends StatefulWidget {
   
-  const GuidelineDetailPage({Key key, @required this.controller, this.guideline}) : super(key: key);
+  const GuidelineDetailPage({Key? key, required this.controller, this.guideline}) : super(key: key);
 
-  final GuidelineEntity guideline;
-  final GuidelinesController controller;
+  final GuidelineEntity? guideline;
+  final GuidelinesController? controller;
 
   @override
   _GuidelineDetailPageState createState() => _GuidelineDetailPageState();
@@ -26,7 +26,7 @@ class GuidelineDetailPage extends StatefulWidget {
 
 class _GuidelineDetailPageState extends State<GuidelineDetailPage> {
 
-  GuidelineEntity guideline;
+  GuidelineEntity? guideline;
   final TextStyles _textStylesConsts = TextStyles();
   final PageController pageController = PageController();
 
@@ -37,10 +37,10 @@ class _GuidelineDetailPageState extends State<GuidelineDetailPage> {
   void initState() {
     super.initState();
     guideline = widget.guideline;
-    tasks = guideline.tasks.asObservable();
+    tasks = guideline!.tasks!.asObservable();
   }
 
-  Future<bool> _showDeleteDialog() async {
+  Future<bool?> _showDeleteDialog() async {
     return await showDialog<bool>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -83,7 +83,7 @@ class _GuidelineDetailPageState extends State<GuidelineDetailPage> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Hero(
-        tag: "GuidelineItem${widget.guideline.id}",
+        tag: "GuidelineItem${widget.guideline!.id}",
         child: Material(
           color: AppColors.backgroundColor,
           child: SafeArea(
@@ -105,16 +105,16 @@ class _GuidelineDetailPageState extends State<GuidelineDetailPage> {
                         ),
                         Expanded(
                           child: IconButton(
-                            tooltip: (guideline.done) 
+                            tooltip: guideline!.done! 
                               ? "Reabrir" 
                               : "Finalizar",
-                            icon: Icon((guideline.done)
+                            icon: Icon(guideline!.done!
                               ? FeatherIcons.repeat 
                               : FeatherIcons.checkCircle, 
                               color: Colors.white,
                             ),
                             onPressed: () {
-                              widget.controller.changeStatus(guideline);
+                              widget.controller!.changeStatus(guideline!);
                               Navigator.of(context).pop();
                             },
                           ),
@@ -125,10 +125,10 @@ class _GuidelineDetailPageState extends State<GuidelineDetailPage> {
                             color: Colors.white,
                           ),
                           onPressed: () async {
-                            bool canDelete = await _showDeleteDialog();
+                            bool canDelete = (await _showDeleteDialog()) ?? false;
                             if (canDelete) {
-                              widget.controller.deleteGuideline(widget.guideline);
-                              widget.controller.getData();
+                              widget.controller!.deleteGuideline(widget.guideline!);
+                              widget.controller!.getData();
                               Navigator.of(context).pop();
                             }
                           },

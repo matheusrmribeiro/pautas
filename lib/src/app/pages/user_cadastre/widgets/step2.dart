@@ -10,8 +10,8 @@ import 'header.dart';
 
 class Step2 extends StatelessWidget {
 
-  Step2({@required this.controller}) {
-    _textController.text = controller.newUser.email;
+  Step2({required this.controller}) {
+    _textController.text = controller.newUser.email!;
     controller.addStepCallback((){
       bool goNextPage = false;
 
@@ -55,7 +55,7 @@ class Step2 extends StatelessWidget {
                 style: textStylesConsts.textFieldWhite,
                 keyboardType: TextInputType.emailAddress,
                 textCapitalization: TextCapitalization.none,
-                onFieldSubmited: (String text) {
+                onFieldSubmited: (String? text) {
                   Modular.to.pop();
                 },
               ),

@@ -1,7 +1,7 @@
 import 'package:pautas/src/domain/interfaces/base_model_interface.dart';
 
 abstract class BaseEntity extends IBaseModelInterface {
-  String id;
+  String? id;
 
   BaseEntity();
 

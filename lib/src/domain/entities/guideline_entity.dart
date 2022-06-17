@@ -13,14 +13,14 @@ class GuidelineEntity extends BaseEntity{
     this.tasks =  const []
   });
 
-  String owner;
-  String author;
-  String title;
-  String description;
-  bool done;
-  Timestamp begin;
-  Timestamp end;
-  List<TaskEntity> tasks;
+  String? owner;
+  String? author;
+  String? title;
+  String? description;
+  bool? done;
+  Timestamp? begin;
+  Timestamp? end;
+  List<TaskEntity>? tasks;
 
   @override
   void assignValues(Map<String, dynamic> map) {
@@ -45,7 +45,7 @@ class GuidelineEntity extends BaseEntity{
     "done": done,
     "begin": begin,
     "end": end,
-    "tasks": tasks.map((e) => e.toMap()).toList()
+    "tasks": tasks!.map((e) => e.toMap()).toList()
   };
 
 }

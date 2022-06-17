@@ -11,7 +11,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  ReactionDisposer disposerAuth;
+  late ReactionDisposer disposerAuth;
   double _opacity = 0;
 
   @override

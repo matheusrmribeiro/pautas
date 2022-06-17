@@ -4,19 +4,19 @@ import 'package:pautas/src/app/theme/colors.dart';
 
 class NavigatorButtons extends StatefulWidget {
   NavigatorButtons({
-    @required this.pageController, 
+    required this.pageController, 
     this.canNavigate = true,
-    @required this.currentPage, 
-    @required this.totalPages, 
+    required this.currentPage, 
+    required this.totalPages, 
     this.nextCallback,
     this.unfocusedStepColor = Colors.white,
     this.focusedStepColor = AppColors.textFieldColor,
   });
 
-  final PageController pageController;
+  final PageController? pageController;
   final int currentPage;
   final int totalPages;
-  final Function nextCallback;
+  final Function? nextCallback;
   final bool canNavigate;
   final Color unfocusedStepColor;
   final Color focusedStepColor;
@@ -28,8 +28,8 @@ class NavigatorButtons extends StatefulWidget {
 class Steps{
   Steps({this.index, this.color});
 
-  int index;
-  Color color;
+  int? index;
+  Color? color;
 }
 
 class _NavigatorButtonsState extends State<NavigatorButtons> {
@@ -79,7 +79,7 @@ class _NavigatorButtonsState extends State<NavigatorButtons> {
                     onPressed: (){
                       FocusScope.of(context).unfocus();
                       if (!ignoreNext)
-                        widget.pageController.previousPage(duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                        widget.pageController!.previousPage(duration: Duration(milliseconds: 500), curve: Curves.easeIn);
                     },
                   ),
               )
@@ -113,13 +113,13 @@ class _NavigatorButtonsState extends State<NavigatorButtons> {
                   color: Colors.white),
                   onPressed: () async {
                     FocusScope.of(context).unfocus();
-                    final bool goToNextPage = await widget.nextCallback();              
+                    final bool goToNextPage = await widget.nextCallback!();              
 
                     if (goToNextPage)
                       if (isLastPage)
                         setState(() { ignoreNext = true; });
                       else
-                        widget.pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+                        widget.pageController!.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeOut);
                   },
                 ),
               ),

@@ -8,7 +8,7 @@ class TextStyles {
 
   TextStyles({this.context});
 
-  final BuildContext context;
+  final BuildContext? context;
 
   static const textStyleBackground = TextStyle(
     color: AppColors.backgroundColor,
@@ -105,12 +105,12 @@ class TextStyles {
 
   get customTextFieldLabel => GoogleFonts.roboto(
     fontSize: 40, 
-    color: Theme.of(context).accentColor,
+    color: Theme.of(context!).accentColor,
     fontWeight: FontWeight.bold);
 
   get customTextFieldText => GoogleFonts.roboto(
     fontSize: 20, 
-    color: Theme.of(context).accentColor,
+    color: Theme.of(context!).accentColor,
     fontWeight: FontWeight.bold,
   );
 

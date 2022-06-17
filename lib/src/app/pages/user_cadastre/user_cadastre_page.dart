@@ -20,7 +20,7 @@ class _UserCadastreState extends State<UserCadastrePage> {
   final UserCadastreController controller = UserCadastreController();
   final List<Widget> steps = [];
 
-  PageController _pageController;
+  PageController? _pageController;
 
   @override
   void initState() {
@@ -37,11 +37,11 @@ class _UserCadastreState extends State<UserCadastrePage> {
 
   }
 
-  void backToEmail() => _pageController.jumpToPage(1);
+  void backToEmail() => _pageController!.jumpToPage(1);
 
   @override
   void dispose() {
-    _pageController.dispose();
+    _pageController!.dispose();
     super.dispose();
   }
 

@@ -19,13 +19,13 @@ class _GuidelineItemState extends State<GuidelineItem> {
   final TextStyles textStyles = TextStyles();
 
   String _tasksDone() =>
-    widget.guidelineEntity.tasks.where((element) => element.done).toList().length.toString();
+    widget.guidelineEntity.tasks!.where((element) => element.done!).toList().length.toString();
 
   String _tasksTotal() =>
-    widget.guidelineEntity.tasks.length.toString();
+    widget.guidelineEntity.tasks!.length.toString();
 
-  bool _allDone() => (widget.guidelineEntity.tasks.isEmpty) ||
-    (widget.guidelineEntity.tasks.where((element) => !element.done).isEmpty);
+  bool _allDone() => (widget.guidelineEntity.tasks!.isEmpty) ||
+    (widget.guidelineEntity.tasks!.where((element) => !element.done!).isEmpty);
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class _GuidelineItemState extends State<GuidelineItem> {
                     Container(
                       width: double.infinity,
                       height: 30,
-                      child: Text(widget.guidelineEntity.title,
+                      child: Text(widget.guidelineEntity.title!,
                         overflow: TextOverflow.ellipsis,
                         style: textStyles.guidelineItemTitle,
                       ),
@@ -75,7 +75,7 @@ class _GuidelineItemState extends State<GuidelineItem> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(widget.guidelineEntity.description,
+                            Text(widget.guidelineEntity.description!,
                               style: textStyles.guidelineItemDescription,
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,

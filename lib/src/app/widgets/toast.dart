@@ -16,7 +16,7 @@ class Toast{
       ),
       child: Center(
         child: Text(
-          message??"",
+          message,
           softWrap: true,
           textAlign: TextAlign.center,
           style: TextStyles().hint,

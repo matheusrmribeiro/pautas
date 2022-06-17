@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PulseAnimator extends StatefulWidget {
-  const PulseAnimator({Key key, this.child, this.pulseColor = Colors.grey}) : super(key: key);
+  const PulseAnimator({Key? key, this.child, this.pulseColor = Colors.grey}) : super(key: key);
 
-  final Widget child;
-  final Color pulseColor;
+  final Widget? child;
+  final Color? pulseColor;
 
   @override
   _PulseAnimatorState createState() => _PulseAnimatorState();

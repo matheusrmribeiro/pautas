@@ -47,7 +47,7 @@ abstract class _LoginControllerBase with Store {
     } catch (error) {
       statusEmail = AuthStatus.logoff;
 
-      switch (error.code) {
+      switch (error) {
         case "invalid-email":
           Toast.showMessage("Email ou senha incorreto!", duration: 5, toastKind: ToastKind.error);
           break;

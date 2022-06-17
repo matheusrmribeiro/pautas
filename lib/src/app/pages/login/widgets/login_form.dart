@@ -12,7 +12,7 @@ import 'reset_password_dialog.dart';
 class LoginForm extends StatefulWidget {
   LoginForm({this.controller});
   
-  final LoginController controller;
+  final LoginController? controller;
 
   @override
   _LoginFormState createState() => _LoginFormState();

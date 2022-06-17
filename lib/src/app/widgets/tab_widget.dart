@@ -11,11 +11,11 @@ class TabWidget extends StatefulWidget {
     this.hintColor
   });
 
-  final PageController controller;
-  final List<TabEntity> tabs;
-  final TextStyle activeTextStyle;
-  final TextStyle inactiveTextStyle;
-  final Color hintColor;
+  final PageController? controller;
+  final List<TabEntity>? tabs;
+  final TextStyle? activeTextStyle;
+  final TextStyle? inactiveTextStyle;
+  final Color? hintColor;
 
   @override
   _TabWidgetState createState() => _TabWidgetState();
@@ -29,19 +29,19 @@ class _TabWidgetState extends State<TabWidget> {
   @override
   void initState() {
     super.initState();
-    widget.controller.addListener(() {
-      double diff = (widget.controller.page - currentIndex).abs();
+    widget.controller!.addListener(() {
+      double diff = (widget.controller!.page! - currentIndex).abs();
       if ((diff >= 0.8) && (diff <= 1))
-        updateTab(widget.tabs[widget.controller.page.toInt()]);
+        updateTab(widget.tabs![widget.controller!.page!.toInt()]);
     });
   }
 
   void updateTab(TabEntity tab) {
-    final RenderBox renderBoxRed = tab.key.currentContext.findRenderObject();
+    final RenderBox renderBoxRed = tab.key.currentContext!.findRenderObject() as RenderBox;
     final widgetPosition = renderBoxRed.localToGlobal(Offset.zero);
     setState(() {
       position = widgetPosition.dx - 20;
-      currentIndex = widget.tabs.indexOf(tab);
+      currentIndex = widget.tabs!.indexOf(tab);
     });
   }
 
@@ -53,22 +53,22 @@ class _TabWidgetState extends State<TabWidget> {
       child: Stack(
         children: [
           Row(
-            children: widget.tabs.map((e) => 
+            children: widget.tabs!.map((e) => 
               Container(
-                margin: (widget.tabs.indexOf(e) == 0) 
+                margin: (widget.tabs!.indexOf(e) == 0) 
                   ? null 
                   : EdgeInsets.only(left: 20),
                 child: GestureDetector(
                   onTap: () {
-                    widget.controller.animateToPage(
-                      widget.tabs.indexOf(e), 
+                    widget.controller!.animateToPage(
+                      widget.tabs!.indexOf(e), 
                       duration: Duration(milliseconds: 375), 
                       curve: Curves.easeInOut
                     );
                   },
-                  child: Text(e.text,
+                  child: Text(e.text!,
                     key: e.key,
-                    style: (currentIndex == widget.tabs.indexOf(e)) 
+                    style: (currentIndex == widget.tabs!.indexOf(e)) 
                       ? (widget.activeTextStyle == null) 
                         ? textStyles.tabActive 
                         : widget.activeTextStyle
@@ -102,7 +102,7 @@ class TabEntity {
   
   TabEntity({this.text});
 
-  final String text;
+  final String? text;
   final GlobalKey key = GlobalKey();
 
 }

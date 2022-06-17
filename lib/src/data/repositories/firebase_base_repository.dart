@@ -3,39 +3,39 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pautas/src/domain/entities/base_entity.dart';
 import 'package:pautas/src/domain/interfaces/firebase_repository_base_interface.dart';
 
-class FirebaseRepositoyBase<Entity extends BaseEntity> implements IFirebaseRepositoryBaseInterface<Entity>{
+class FirebaseRepositoyBase<Entity extends BaseEntity?> implements IFirebaseRepositoryBaseInterface<Entity>{
 
-  FirebaseRepositoyBase({this.fromMap, this.collection}) {
+  FirebaseRepositoyBase({this.fromMap, required this.collection}) {
     collectionReference = FirebaseFirestore.instance.collection(collection);
   }
 
-  final Entity Function(Map map) fromMap;
+  final Entity Function(Map? map)? fromMap;
 
   String collection;
 
-  CollectionReference collectionReference;
+  late CollectionReference collectionReference;
 
   @override
   Future<String> add(Entity entity) async {
-    var document = await collectionReference.add(entity.toMap());
+    var document = await collectionReference.add(entity!.toMap());
     return document.id;
   }
 
   @override
   Future<void> update(Entity entity) async {
-    await collectionReference.doc(entity.id).update(entity.toMap());
+    await collectionReference.doc(entity!.id).update(entity.toMap());
   }
 
   @override
-  Future<void> delete(String documentId) async {
+  Future<void> delete(String? documentId) async {
     await collectionReference.doc(documentId).delete();
   }
 
   @override
   Future<Entity> getById(String documentId) async {
     final snapshot = await collectionReference.doc(documentId).get();
-    Entity entity = fromMap(snapshot.data());
-    entity.id = snapshot.id;
+    Entity entity = fromMap!(snapshot.data() as Map<dynamic, dynamic>?);
+    entity!.id = snapshot.id;
     return entity;
   }
 
@@ -44,8 +44,8 @@ class FirebaseRepositoyBase<Entity extends BaseEntity> implements IFirebaseRepos
     List<Entity> list = [];
     final querySnapshot = await collectionReference.get();
     querySnapshot.docs.forEach((element) {
-      Entity entity = fromMap(element.data());
-      entity.id = element.id;
+      Entity entity = fromMap!(element.data() as Map<dynamic, dynamic>?);
+      entity!.id = element.id;
       list.add(entity);
     });
 

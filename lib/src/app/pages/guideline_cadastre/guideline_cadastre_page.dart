@@ -13,8 +13,8 @@ import 'widgets/step_tasks.dart';
 class GuidelineCadastrePage extends StatefulWidget {
   GuidelineCadastrePage({this.guideline, this.index});
 
-  final GuidelineEntity guideline;
-  final int index;
+  final GuidelineEntity? guideline;
+  final int? index;
 
   @override
   _GuidelineCadastreState createState() => _GuidelineCadastreState();
@@ -30,11 +30,11 @@ class _GuidelineCadastreState extends State<GuidelineCadastrePage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) { 
-      controller.pageController.jumpToPage(widget.index);
+      controller.pageController.jumpToPage(widget.index!);
     });
 
     if (widget.guideline != null)
-      controller.setGuideline(widget.guideline);
+      controller.setGuideline(widget.guideline!);
 
     steps.addAll([
       Step1(controller: controller), 

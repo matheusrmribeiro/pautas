@@ -8,7 +8,7 @@ import 'package:pautas/src/domain/entities/guideline_entity.dart';
 class MainWidget extends StatefulWidget {
   MainWidget(this.guideline);
 
-  final GuidelineEntity guideline;
+  final GuidelineEntity? guideline;
 
   @override
   _MainWidgetState createState() => _MainWidgetState();
@@ -16,7 +16,7 @@ class MainWidget extends StatefulWidget {
 
 class _MainWidgetState extends State<MainWidget> {
   final TextStyles _textStylesConsts = TextStyles();
-  GuidelineEntity guideline;
+  GuidelineEntity? guideline;
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _MainWidgetState extends State<MainWidget> {
             children: [
               Container(
                 margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                child: Text(widget.guideline.title,
+                child: Text(widget.guideline!.title!,
                   maxLines: 2,
                   softWrap: true,
                   style: GoogleFonts.roboto(
@@ -56,7 +56,7 @@ class _MainWidgetState extends State<MainWidget> {
                             style: _textStylesConsts.guidelineDetailTitle
                           ),
                           SizedBox(height: 10),
-                          Text(widget.guideline.author,
+                          Text(widget.guideline!.author!,
                             style: _textStylesConsts.guidelineDetailInfo
                           ),
                         ],
@@ -71,7 +71,7 @@ class _MainWidgetState extends State<MainWidget> {
                           SizedBox(height: 10),
                           RichText(
                             text: TextSpan(
-                              text: widget.guideline.description,
+                              text: widget.guideline!.description,
                               style: _textStylesConsts.guidelineDetailInfo
                             ),
                             softWrap: true,
@@ -92,7 +92,7 @@ class _MainWidgetState extends State<MainWidget> {
               Modular.to.pushNamed("/guideline/cadastre/edit", arguments: [0, widget.guideline])
               .then((value) {
                 setState((){
-                  guideline = (value as GuidelineEntity);
+                  guideline = (value as GuidelineEntity?);
                 });
               });
             },

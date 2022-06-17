@@ -46,7 +46,7 @@ class ProfilePage extends StatelessWidget {
               style: _textStylesConsts.guidelineDetailTitle
             ),
             SizedBox(height: 10),
-            Text(user.name,
+            Text(user.name!,
               style: _textStylesConsts.guidelineDetailInfo
             ),
             SizedBox(height: 40),
@@ -54,7 +54,7 @@ class ProfilePage extends StatelessWidget {
               style: _textStylesConsts.guidelineDetailTitle
             ),
             SizedBox(height: 10),
-            Text(user.email,
+            Text(user.email!,
               style: _textStylesConsts.guidelineDetailInfo
             ),
           ],

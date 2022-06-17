@@ -9,7 +9,7 @@ import 'header.dart';
 
 class Step3 extends StatelessWidget {
 
-  Step3({@required this.controller}) {
+  Step3({required this.controller}) {
     controller.addStepCallback(() async {
 
       bool goNextPage = false;
@@ -47,7 +47,7 @@ class Step3 extends StatelessWidget {
                 style: textStylesConsts.textFieldWhite,
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.none,
-                onFieldSubmited: (String text) {
+                onFieldSubmited: (String? text) {
                   Modular.to.pop();
                 },
               )

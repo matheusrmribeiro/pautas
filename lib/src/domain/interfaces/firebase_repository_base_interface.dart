@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'base_model_interface.dart';
 
-abstract class IFirebaseRepositoryBaseInterface<Entity extends IBaseModelInterface> {
+abstract class IFirebaseRepositoryBaseInterface<Entity extends IBaseModelInterface?> {
 
   Future<String> add(Entity model);
 

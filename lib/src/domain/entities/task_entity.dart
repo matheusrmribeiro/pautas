@@ -7,8 +7,8 @@ class TaskEntity extends BaseEntity {
     this.text
   });
 
-  bool done;
-  String text;
+  bool? done;
+  String? text;
 
   @override
   void assignValues(Map<String, dynamic> map) {

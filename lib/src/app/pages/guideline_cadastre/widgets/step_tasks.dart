@@ -11,7 +11,7 @@ import 'header.dart';
 
 class StepTasks extends StatelessWidget {
 
-  StepTasks({@required this.controller}) {
+  StepTasks({required this.controller}) {
     controller.addStepCallback(() async {
       await controller.addGuideline();
       return true;
@@ -55,7 +55,7 @@ class StepTasks extends StatelessWidget {
                         style: textStylesConsts.textFieldNormal,
                         keyboardType: TextInputType.multiline,
                         textCapitalization: TextCapitalization.sentences,
-                        onFieldSubmited: (String text) {
+                        onFieldSubmited: (String? text) {
                           Modular.to.pop();
                         },
                       ),
@@ -80,8 +80,8 @@ class StepTasks extends StatelessWidget {
                             if (_textController.text.isEmpty)
                               return;
 
-                            if (controller.newGuideline.tasks.isEmpty)
-                              controller.newGuideline.tasks = [];
+                            if (controller.newGuideline!.tasks!.isEmpty)
+                              controller.newGuideline!.tasks = [];
 
                             controller.addTask(
                               TaskEntity(
@@ -112,7 +112,7 @@ class StepTasks extends StatelessWidget {
                           value: controller.tasks[index].done,
                           onChanged: (value) {
                             controller.tasks[index] = TaskEntity(
-                              done: !task.done,
+                              done: !task.done!,
                               text: task.text
                             );
                           },
@@ -125,13 +125,13 @@ class StepTasks extends StatelessWidget {
                         ),
                         onTap: () {
                           controller.tasks[index] = TaskEntity(
-                            done: !task.done,
+                            done: !task.done!,
                             text: task.text
                           );
                         },
                         title: Text(
-                          task.text,
-                          style: (task.done)
+                          task.text!,
+                          style: task.done!
                             ? textStylesConsts.taskDone
                             : textStylesConsts.taskNormal,
                         ),

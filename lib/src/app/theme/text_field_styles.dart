@@ -4,7 +4,7 @@ import 'colors.dart';
 
 class TextFieldStylesConsts {
 
-  static InputDecoration textFieldLogin({String hint, IconData prefixIcon, IconData suffixIcon}) => InputDecoration(
+  static InputDecoration textFieldLogin({String? hint, IconData? prefixIcon, IconData? suffixIcon}) => InputDecoration(
     filled: true,
     fillColor: Color(0xFFEEEEEE),
     border: InputBorder.none,
@@ -16,7 +16,7 @@ class TextFieldStylesConsts {
     ),
   );
 
-  static InputDecoration textFieldCadastre({String hint, String label, IconData prefixIcon, IconData suffixIcon, String prefixText}) => InputDecoration(
+  static InputDecoration textFieldCadastre({String? hint, String? label, IconData? prefixIcon, IconData? suffixIcon, String? prefixText}) => InputDecoration(
     border: InputBorder.none,
     isDense: true,
     prefixText: prefixText,
@@ -36,7 +36,7 @@ class TextFieldStylesConsts {
     ),
   );
 
-  static InputDecoration textFieldCadastreWithBorder({String hint, String label, IconData prefixIcon, IconData suffixIcon, String prefixText}) => InputDecoration(
+  static InputDecoration textFieldCadastreWithBorder({String? hint, String? label, IconData? prefixIcon, IconData? suffixIcon, String? prefixText}) => InputDecoration(
     helperText: label,
     isDense: true,
     prefixText: prefixText,
@@ -76,14 +76,14 @@ class TextFieldStylesConsts {
   );
 
  static InputDecoration textFieldContext({
-    @required BuildContext context, 
-    String hint, 
-    String label, 
-    IconData prefixIcon, 
-    IconData suffixIcon, 
-    String prefixText,
-    Color backgroundColor,
-    Function suffixTap
+    required BuildContext context, 
+    String? hint, 
+    String? label, 
+    IconData? prefixIcon, 
+    IconData? suffixIcon, 
+    String? prefixText,
+    Color? backgroundColor,
+    Function? suffixTap
   }) => InputDecoration(
     prefixText: prefixText,
     prefixIcon: (prefixIcon == null) 
@@ -92,14 +92,14 @@ class TextFieldStylesConsts {
     suffix: (suffixIcon == null) 
       ? null 
       : GestureDetector(
-        onTap: suffixTap as void Function(),
+        onTap: suffixTap as void Function()?,
           child: Icon(suffixIcon, 
             color: Theme.of(context).iconTheme.color,
           )
         ),
     hintText: hint,
     hintStyle: TextStyle(
-      color: Theme.of(context).iconTheme.color.withAlpha(150),
+      color: Theme.of(context).iconTheme.color!.withAlpha(150),
     ),
     fillColor: (backgroundColor == null) ? Theme.of(context).cardColor : backgroundColor,
     filled: true,
@@ -123,14 +123,14 @@ class TextFieldStylesConsts {
   );
 
 static InputDecoration textFieldCadastreWithBackground({
-    @required BuildContext context, 
-    String hint, 
-    String label, 
-    IconData prefixIcon, 
-    IconData suffixIcon, 
-    String prefixText,
-    Color backgroundColor,
-    Function suffixTap
+    required BuildContext context, 
+    String? hint, 
+    String? label, 
+    IconData? prefixIcon, 
+    IconData? suffixIcon, 
+    String? prefixText,
+    Color? backgroundColor,
+    Function? suffixTap
   }) => InputDecoration(
     prefixText: prefixText,
     prefixIcon: (prefixIcon == null) 
@@ -139,14 +139,14 @@ static InputDecoration textFieldCadastreWithBackground({
     suffix: (suffixIcon == null) 
       ? null 
       : GestureDetector(
-        onTap: suffixTap as void Function(),
+        onTap: suffixTap as void Function()?,
           child: Icon(suffixIcon, 
             color: Theme.of(context).iconTheme.color,
           )
         ),
     hintText: hint,
     hintStyle: TextStyle(
-      color: Theme.of(context).iconTheme.color.withAlpha(150),
+      color: Theme.of(context).iconTheme.color!.withAlpha(150),
     ),
     errorText: label,
     errorStyle: TextStyle(
@@ -191,12 +191,12 @@ static InputDecoration textFieldCadastreWithBackground({
   );
 
   static InputDecoration textFieldContextWithBorder({
-    @required BuildContext context, 
-    String hint, 
-    String label, 
-    IconData prefixIcon, 
-    IconData suffixIcon, 
-    String prefixText
+    required BuildContext context, 
+    String? hint, 
+    String? label, 
+    IconData? prefixIcon, 
+    IconData? suffixIcon, 
+    String? prefixText
   }) => InputDecoration(
     helperText: label,
     isDense: true,

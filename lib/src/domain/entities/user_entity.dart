@@ -7,9 +7,9 @@ class UserEntity extends BaseEntity{
     this.email,
   });
   
-  String name;
-  String email;
-  String password;
+  String? name;
+  String? email;
+  String? password;
 
   @override
   void assignValues(Map<String, dynamic> map) {

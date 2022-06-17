@@ -10,13 +10,13 @@ import 'header.dart';
 
 class Step1 extends StatelessWidget {
 
-  Step1({@required this.controller}) {
-    _textController.text = controller.newGuideline.title;
+  Step1({required this.controller}) {
+    _textController.text = controller.newGuideline!.title!;
     controller.addStepCallback((){
       bool goNextPage = false;
 
       if (_textController.text.isNotEmpty){
-        controller.newGuideline.title = _textController.text;
+        controller.newGuideline!.title = _textController.text;
         goNextPage = true;
       } else
         Toast.showMessage("Preencha o título antes de continuarmos!", duration: 5);
@@ -55,7 +55,7 @@ class Step1 extends StatelessWidget {
                 style: textStylesConsts.textFieldWhite,
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.sentences,
-                onFieldSubmited: (String text) {
+                onFieldSubmited: (String? text) {
                   controller.nextPage();
                   Modular.to.pop();
                 },

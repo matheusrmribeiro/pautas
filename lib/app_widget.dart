@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OKToast(
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Pautas',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -28,8 +28,9 @@ class AppWidget extends StatelessWidget {
             color: Colors.white
           )
         ),
-        initialRoute: "/",
-      ).modular(),
+        routeInformationParser: Modular.routeInformationParser,
+        routerDelegate: Modular.routerDelegate,
+      )
     );
   }
 }
